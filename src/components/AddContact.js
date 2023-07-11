@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import { v4 as uuidv4 } from 'uuid';
 
 export class AddContact extends Component {
 
     state = {
+        id: uuidv4(),
         name: "",
         email: "",
       };
@@ -13,6 +15,7 @@ export class AddContact extends Component {
             alert("All the fields are mandatory");
             return;
         }
+        this.props.addContactHandler(this.state);
         this.setState({ name: "", email: "" });
     }
 
@@ -28,15 +31,20 @@ export class AddContact extends Component {
               name="first-name"
               placeholder="First Name"
               value={this.state.name}
-              onChange={(e) => this.setState({ name: e.target.value })}
+              onChange={(e) => {
+                this.setState({ 
+                    name: e.target.value ,
+                    id: uuidv4()
+                })
+            }}
             />
           </div>
           <div className="field">
             <label>Last Name</label>
             <input
               type="text"
-              name="last-name"
-              placeholder="Last Name"
+              name="email"
+              placeholder="Email"
               value={this.state.email}
               onChange={(e) => this.setState({ email: e.target.value })}
             />
