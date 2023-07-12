@@ -1,6 +1,6 @@
 import React from 'react'
 import ContactCard from './ContactCard';
-import { v4 as uuidv4 } from 'uuid';
+import { Link } from 'react-router-dom';
 
 export default function ContactList(props) {
   const deleteContactHandler =(id)=>{
@@ -13,6 +13,12 @@ export default function ContactList(props) {
     })
   return (
     <div>
+      <h2>
+        Contact List
+        <Link to="/add-contact">
+          <button className="ui button blue right">Add Contact</button>
+        </Link>
+      </h2>
       <div className="ui celled list">
       {renderContactList}
       </div>
