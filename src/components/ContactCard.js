@@ -2,7 +2,35 @@ import React from "react";
 import user from "../images/user.png";
 import { Link } from "react-router-dom";
 
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+
+
+
 export default function ContactCard(props) {
+
+  const handle = () => {
+    alert('Contact deleted Successfully');
+    props.clickHandler(id);
+  };
+
+  const submit = () => {
+    confirmAlert({
+      title: 'Confirm to Delete',
+      message: 'Are you sure to do this.',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => handle()
+        },
+        {
+          label: 'No',
+          onClick: () => alert('Cancel Successfull')
+        }
+      ]
+    });
+  };
+
   console.log(props.contact);
   const { id, name, email } = props.contact;
 
@@ -23,7 +51,8 @@ export default function ContactCard(props) {
         </div>
         <i
           className="trash alternate outline icon red"
-          onClick={() => props.clickHandler(id)}
+          onClick={submit}
+
         ></i>
       </div>
     </div>

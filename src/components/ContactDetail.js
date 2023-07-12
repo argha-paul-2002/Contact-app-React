@@ -19,11 +19,11 @@ export default function ContactDetail(props) {
             //Set fetch data to local constant
             setValue(_state)
         }
-        
+
     }, [location])
     
   return (
-    <div className="main">
+    <div className="main container">
         <div className="ui card centered">
             <div className="image">
                 <img src={user} alt="User" />
@@ -32,6 +32,11 @@ export default function ContactDetail(props) {
                 <div className="header">{value.name}</div>
                 <div className="description">{value.email}</div>
             </div>
+        </div>
+        <div className="center-div container">
+            <Link to="/">
+                <button className="ui button blue centered">Back to contact List</button>
+            </Link>
         </div>
     </div>
   );
