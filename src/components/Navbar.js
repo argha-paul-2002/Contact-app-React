@@ -2,7 +2,7 @@ import React, {useRef} from 'react'
 import { Link } from "react-router-dom";
 
 export default function Navbar(props) {
-    console.log(props);
+    // console.log(props);
     const inputEl = useRef("");
 
     const getSearchTerm = ()=>{
@@ -29,12 +29,12 @@ return (
                     </li>
                                         
                 </ul>
-                {/* <form className="d-flex" role="search"> */}
+                
                 <div className="d-flex">
                     <input className="form-control me-2 d-flex" type="text" ref={inputEl} placeholder="Search" aria-label="Search" value={props.term} onChange={getSearchTerm}/>
                     <button className="btn btn-outline-success" type="submit">Search</button>
                 </div>
-                {/* </form> */}
+             
             </div>
         </div>
     </nav>
