@@ -34,7 +34,7 @@ const searchHandler = (searchTerm)=>{
 
   const addContactHandler = (contact) => {
     setContacts([...contacts, { id: uuidv4(), ...contact }]);
-    console.log(contact);
+    // console.log(contact);
   };
 
   const removeContactHandler = (id) => {
