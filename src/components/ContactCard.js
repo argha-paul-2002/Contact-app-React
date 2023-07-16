@@ -31,30 +31,22 @@ export default function ContactCard(props) {
     });
   };
 
-  console.log(props.contact);
   const { id, name, email } = props.contact;
 
-  const dashboardData = {
-    component: "Dashboard page",
-    content: "Data is sent from profile component",
-    timestamp: Date.now(),
-  };
-  return (
-    <div>
-      <div className="item">
-        <img src={user} alt="User" className="ui avatar image" />
-        <div className="content">
-          <Link to={{ pathname: `contact/${id}`}} state={{data: props.contact}}>
-            <div className="header">{name}</div>
-            <div>{email}</div>
-          </Link>
-        </div>
-        <i
-          className="trash alternate outline icon red"
-          onClick={submit}
 
-        ></i>
+  return (
+    <div className="card mb-3" style={{width: "18rem"}}>
+        <img src={user} className="card-img-top mx-auto" alt="User" style={{width: "50%"}} />
+        <div className="card-body">
+          <h5 className="card-title">{name}</h5>
+          <p className="card-text">{email}</p>
+          <div className="d-flex justify-content-evenly mt-4">
+            <Link to={{ pathname: `contact/${id}`}} state={{data: props.contact}} >
+              <button type="button" className="btn btn-primary pull-right">Details</button>
+            </Link>
+            <button type="button" className="btn btn-danger pull-right" onClick={submit}>Delete</button>
+          </div>
+        </div>
       </div>
-    </div>
   );
 }
