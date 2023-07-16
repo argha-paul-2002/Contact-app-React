@@ -9,10 +9,28 @@ import { BrowserRouter , Route , Routes} from "react-router-dom";
 import Navbar from './components/Navbar';
 
 function App() {
+
   const LOCAL_STORAGE_KEY = "contacts";
   const [contacts, setContacts] = useState(
     JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) ?? []
   );
+
+const [seatchTerm , setSearchTerm] = useState("");
+const [searchResults, setSearchResults] = useState([]);
+
+const searchHandler = (searchTerm)=>{
+  // console.log(searchTerm);
+  setSearchTerm(searchTerm);
+  if(searchTerm !== ""){
+    const newContactList = contacts.filter((contact) =>{
+     return Object.values(contact).join(" ").toLowerCase().includes(searchTerm.toLowerCase())
+    });
+    setSearchResults(newContactList);
+  }
+  else{
+    setSearchResults(contacts);
+  }
+};
 
   const addContactHandler = (contact) => {
     setContacts([...contacts, { id: uuidv4(), ...contact }]);
@@ -39,12 +57,12 @@ function App() {
   return (
     <>
       <BrowserRouter>
-      <Navbar />
+      <Navbar term={seatchTerm} searchKeyword={searchHandler}  />
       <Header />
         <div className=' ui container'>
           
         <Routes>
-          <Route exact path="/" element={<ContactList contacts={contacts} getContactId={removeContactHandler} />}></Route>
+          <Route exact path="/" element={<ContactList contacts={seatchTerm.length < 1? contacts : searchResults} getContactId={removeContactHandler} />}></Route>
           <Route exact path="/add-contact" element={<AddContact addContactHandler = {addContactHandler} />}></Route>
           <Route exact path='/contact/:id' element={<ContactDetail />}></Route>
         </Routes>
