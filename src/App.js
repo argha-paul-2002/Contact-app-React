@@ -6,6 +6,7 @@ import ContactDetail from './components/ContactDetail';
 import Header from './components/Header';
 import React, { useState, useEffect} from 'react';
 import { BrowserRouter , Route , Routes} from "react-router-dom";
+import Navbar from './components/Navbar';
 
 function App() {
   const LOCAL_STORAGE_KEY = "contacts";
@@ -37,8 +38,9 @@ function App() {
 
   return (
     <>
-      <Header />
       <BrowserRouter>
+      <Navbar />
+      <Header />
         <div className=' ui container'>
           
         <Routes>
